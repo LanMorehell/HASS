@@ -1,0 +1,56 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+homeassistant:
+  name: Sweethome
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 300
+  unit_system: metric
+  time_zone: Europe/Moscow
+
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+frontend:
+  themes: !include_dir_merge_named themes
+
+hassio:
+
+#FLOORPLAN
+#enables frontend
+
+frontend:
+  extra_html_url:
+    - /local/custom_ui/state-card-floorplan.html
+  
+
+panel_custom: 
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+    
+
+
+binary_sensor:
+  - platform: mqtt
+    state_topic: dummy/floorplan/sensor
+    name: Floorplan
+
+
+homeassistant:
+  customize: !include customize.yaml
+
