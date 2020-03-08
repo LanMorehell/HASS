@@ -13,7 +13,7 @@ homeassistant:
   elevation: 300
   unit_system: metric
   time_zone: Europe/Moscow
-
+ 
 
 # Text to speech
 tts:
