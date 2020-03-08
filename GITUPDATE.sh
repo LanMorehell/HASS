@@ -1,8 +1,6 @@
 #!/bin/bash
 
 cd /config
-source /srv/homeassistant/bin/activate
-hass --script check_config
 
 git add .
 git status
@@ -12,3 +10,8 @@ git commit -m "${CHANGE_MSG}"
 git push origin master
 
 exit
+
+#git add . && git commit -m "Initial commit"
+#https://blog.schembri.me/post/syncing-homeassistant-with-github/
+#git push -u origin master
+#https://www.home-assistant.io/docs/ecosystem/backup/backup_github/
